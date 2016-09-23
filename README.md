@@ -18,35 +18,6 @@ Create "demo" project
 $ oc new-project demo
 ```
 
-Create Secret containing SSL keys for JDBC over SSL
-
-```
-$ oc create -f ose-cicd/datavirt-demo-secret.json
-```
-
-Create source/injected images for EAP and JDV S2I. These images are used to provide the required datasource artifacts and configration to the EAP and JDV Pods. Replace REGISTRY with the
-appropriate registry hostname:port (e.g. registry.example.com:5000)
-
-```
-$ cd ose-dba
-$ docker build -f Dockerfile.eap .
-$ docker tag ### registry/jboss-datavirt-6/demo-eap-extensions:1.0
-$ docker push registry/jboss-datavirt-6/demo-eap-extensions:1.0
-
-$ docker build -f Dockerfile.jdv .
-$ docker tag ### registry/jboss-datavirt-6/demo-jdv-extensions:1.0
-$ docker push registry/jboss-datavirt-6/demo-jdv-extensions:1.0
-
-```
-
-Create ImageStreams for source/injected images. Replace "registry.example.com:5000" in ose-cicd/demo-image-stream.json with the appropriate registry hostname:port
-
-```
-$ oc create -f ose-cicd/demo-image-stream.json
-$ oc import-image demo-eap-extensions --insecure=true
-$ oc import-image demo-jdv-extensions --insecure=true
-```
-
 Create Secret containing datasource configuration
 
 ```
