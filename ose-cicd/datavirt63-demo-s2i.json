@@ -453,7 +453,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "http://github.com/bdecoste/jdv-demo-test",
+                        "uri": "http://github.com/bdecoste/jdv-demo",
                         "ref": ""
                     },
                     "contextDir": "ose-dba/jdv"
@@ -505,7 +505,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "http://github.com/bdecoste/jdv-demo-test",
+                        "uri": "http://github.com/bdecoste/jdv-demo",
                         "ref": ""
                     },
                     "contextDir": "ose-dba/eap"
