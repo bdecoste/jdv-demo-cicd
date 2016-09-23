@@ -382,20 +382,100 @@
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "supports":"demo-jdv-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
             }
         },
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "demo-jdv-extensions"
+                "name": "demo-jdv-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "supports":"demo-jdv-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
             }
         },
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": { 
-                "name": "demo-eap-extensions"
+                "name": "demo-eap-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "demo-jdv-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "http://github.com/bdecoste/jdv-demo-test",
+                        "ref": ""
+                    },
+                    "contextDir": "ose-dba/jdv"
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerfilePath": "Dockerfile"
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "namespace": "demo",
+                        "name": "demo-jdv-extensions:1.0"
+                    }
+                },
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
             }
         },
         {
@@ -411,19 +491,20 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "http://github.com/bdecoste/jdv-demo",
+                        "uri": "http://github.com/bdecoste/jdv-demo-test",
                         "ref": ""
                     },
-                    "contextDir": "ose-dba"
+                    "contextDir": "ose-dba/eap"
                 },
                 "strategy": {
                     "type": "Docker",
-                    "dockerfilePath": "Dockerfile.eap"
+                    "dockerfilePath": "Dockerfile"
                 },
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "demo-eap-extensions:latest"
+                        "namespace": "demo",
+                        "name": "demo-eap-extensions:1.0"
                     }
                 },
                 "triggers": [
