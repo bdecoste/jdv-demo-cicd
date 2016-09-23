@@ -1,0 +1,62 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "demo-image-stream",
+        "annotations": {
+            "description": "ImageStream definitions for JDV demo"
+        }
+    },
+    "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "demo-jdv-extensions",
+                 "annotations": {
+                    "openshift.io/image.insecureRepository": "true"
+                }
+            },
+            "spec": {
+                "dockerImageRepository": "registry.example.com:5000/jboss-datavirt-6/demo-jdv-extensions",
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "description": "demo-jdv-extensions",
+                            "iconClass": "icon-jdv",
+                            "tags": "datavirt",
+                            "supports":"demo-jdv-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "demo-eap-extensions",
+                 "annotations": {
+                    "openshift.io/image.insecureRepository": "true"
+                }
+            },
+            "spec": {
+                "dockerImageRepository": "registry.example.com:5000/jboss-datavirt-6/demo-eap-extensions",
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "description": "demo-eap-extensions",
+                            "iconClass": "icon-jdv",
+                            "tags": "datavirt",
+                            "supports":"demo-eap-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
