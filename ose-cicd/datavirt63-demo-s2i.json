@@ -396,17 +396,6 @@
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 }
-            },
-            "spec": {
-                "tags": [
-                    {
-                        "name": "1.0",
-                        "annotations": {
-                            "supports":"demo-jdv-extensions:1.0",
-                            "version": "1.0"
-                        }
-                    }
-                ]
             }
         },
         {
@@ -438,6 +427,17 @@
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "supports":"demo-eap-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
             }
         },
         {
