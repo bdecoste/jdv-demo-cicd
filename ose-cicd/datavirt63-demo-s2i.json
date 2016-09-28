@@ -470,7 +470,7 @@
                         "uri": "http://github.com/bdecoste/jdv-demo",
                         "ref": ""
                     },
-                    "contextDir": "ose-dba/jdv"
+                    "contextDir": "ose-dba/vdb"
                 },
                 "strategy": {
                     "type": "Docker",
@@ -522,7 +522,7 @@
                         "uri": "http://github.com/bdecoste/jdv-demo",
                         "ref": ""
                     },
-                    "contextDir": "ose-dba/eap"
+                    "contextDir": "ose-dba/app"
                 },
                 "strategy": {
                     "type": "Docker",
