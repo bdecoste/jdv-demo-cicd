@@ -4,11 +4,12 @@ web application in an EAP pod accessing data via a JDV pod. The JDV pod and depl
 excel file, and webservice.
 
 ##Structure
-The example/demo is divided into 4 roles:
- * ose-app: Responsible for authoring the web application deployed in EAP (jdv-demo-app git repo)
- * ose-vdb: Responsible for authoring the VDB(s) deployted in JDV (jdv-demo-vdb git repo)
- * ose-dba: Responsible for providing all of the artifacts (e.g. drivers, resource adapters, translators) and configuration for the available/applicable datasources (jdv-demo-app/ose-dba and jdv-demo-vdb/ose-dba git repos)
- * ose-cicd: Responsible for deploying to OpenShift (jdv-demo/ose-cicd git repo)
+This example/demo is divided into 4 roles:
+ * Application Developer: Responsible for authoring the web application deployed in EAP (jdv-demo-app git repo)
+ * VDB Developer: Responsible for authoring the VDB(s) deployted in JDV (jdv-demo-vdb git repo)
+ * OpenShift DBA: Responsible for providing all of the artifacts (e.g. drivers, resource adapters, translators) and configuration for the available/applicable datasources for both
+the application deployed in EAP and the VDBs deployed in JDV (jdv-demo/ose-dba git repo)
+ * OpenShift Deployer: Responsible for deploying to OpenShift (jdv-demo/ose-cicd git repo)
 
 ##JDV Example
 
@@ -21,8 +22,8 @@ $ oc new-project demo
 Create Secret containing datasource (for EAP) and resource adapter (for JDV) configurations
 
 ```
-$ oc secrets new datasources-demo-secret jdv-demo-app/ose-dba/datasources.properties
-$ oc secrets new resourceadapters-demo-secret jdv-demo-vdb/ose-dba/resourceadapters.properties
+$ oc secrets new resourceadapters-demo-secret ./ose-dba/vdb/resourceadapters.properties
+$ oc secrets new datasources-demo-secret ./ose-dba/app/datasources.properties
 ```
 
 Deploy example/demo
