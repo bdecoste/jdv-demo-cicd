@@ -775,6 +775,11 @@
                                         "name": "jdv-keystore-volume",
                                         "mountPath": "/etc/jdv-secret-volume",
                                         "readOnly": true
+                                    },
+                                    {
+                                        "name": "jdv-demo-eap-volume",
+                                        "mountPath": "/etc/jdv-demo",
+                                        "readOnly": true
                                     }
                                 ],
                                 "livenessProbe": {
@@ -927,6 +932,10 @@
                                     {
                                         "name": "DATAVIRT_USER_GROUPS",
                                         "value": "${DATAVIRT_USER_GROUPS}"
+                                    },
+                                    {
+                                        "name": "EXTENSIONS_PROPERTIES_FILES",
+                                        "value": "/etc/jdv-extensions/resourceadapters.properties"
                                     }
                                 ]
                             }
@@ -936,6 +945,12 @@
                                 "name": "jdv-keystore-volume",
                                 "secret": {
                                     "secretName": "datavirt-demo-secret"
+                                }
+                            },
+                            {
+                                "name": "jdv-demo-jdv-volume",
+                                "secret": {
+                                    "secretName": "resourceadapters-demo-secret"
                                 }
                             }
                         ]
@@ -996,7 +1011,7 @@
                                 "volumeMounts": [
                                     {
                                         "name": "jdv-demo-eap-volume",
-                                        "mountPath": "/etc/jdv-demo",
+                                        "mountPath": "/etc/jdv-extensions",
                                         "readOnly": true
                                     }
                                 ],
@@ -1061,8 +1076,8 @@
                                         "value": "false"
                                     },
                                     {
-                                        "name": "DATASOURCE_PROPERTIES_FILES",
-                                        "value": "/etc/jdv-demo/datasources.properties"
+                                        "name": "EXTENSIONS_PROPERTIES_FILES",
+                                        "value": "/etc/jdv-extensions/datasources.properties"
                                     }
                                 ]
                             }
