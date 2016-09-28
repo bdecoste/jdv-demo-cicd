@@ -7,7 +7,7 @@ excel file, and webservice.
 The example/demo is divided into 4 roles:
  * ose-app: Responsible for authoring the web application deployed in EAP (jdv-demo-app git repo)
  * ose-vdb: Responsible for authoring the VDB(s) deployted in JDV (jdv-demo-vdb git repo)
- * ose-dba: Responsible for providing all of the artifacts (e.g. drivers, resource adapters, translators) and configuration for the available/applicable datasources (jdv-demo/ose-dba git repo)
+ * ose-dba: Responsible for providing all of the artifacts (e.g. drivers, resource adapters, translators) and configuration for the available/applicable datasources (jdv-demo-app/ose-dba and jdv-demo-vdb/ose-dba git repos)
  * ose-cicd: Responsible for deploying to OpenShift (jdv-demo/ose-cicd git repo)
 
 ##JDV Example
@@ -21,8 +21,8 @@ $ oc new-project demo
 Create Secret containing datasource (for EAP) and resource adapter (for JDV) configurations
 
 ```
-$ oc secrets new datasources-demo-secret ./ose-dba/eap/datasources.properties
-$ oc secrets new resourceadapters-demo-secret ./ose-dba/jdv/resourceadapters.properties
+$ oc secrets new datasources-demo-secret jdv-demo-app/ose-dba/datasources.properties
+$ oc secrets new resourceadapters-demo-secret jdv-demo-vdb/ose-dba/resourceadapters.properties
 ```
 
 Deploy example/demo
