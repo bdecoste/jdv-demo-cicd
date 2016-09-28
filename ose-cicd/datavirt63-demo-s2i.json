@@ -92,7 +92,14 @@
         },
         {
             "description": "HornetQ cluster admin password",
-            "name": "HORNETQ_CLUSTER_PASSWORD",
+            "name": "JDV_HORNETQ_CLUSTER_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "HornetQ cluster admin password",
+            "name": "EAP_HORNETQ_CLUSTER_PASSWORD",
             "from": "[a-zA-Z0-9]{8}",
             "generate": "expression",
             "required": true
@@ -119,7 +126,14 @@
         },
         {
             "description": "JGroups cluster password",
-            "name": "JGROUPS_CLUSTER_PASSWORD",
+            "name": "JDV_JGROUPS_CLUSTER_PASSWORD", 
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "JGroups cluster password",
+            "name": "EAP_JGROUPS_CLUSTER_PASSWORD",
             "from": "[a-zA-Z0-9]{8}",
             "generate": "expression",
             "required": true
@@ -308,7 +322,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-eap",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 },
                 "annotations": {
                     "description": "The web server's http port."
@@ -365,7 +379,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-eap",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 },
                 "annotations": {
                     "description": "Route for application's http service."
@@ -394,7 +408,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-eap",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 }
             }
         },
@@ -425,7 +439,7 @@
             "metadata": { 
                 "name": "demo-eap-extensions",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 }
             },
             "spec": {
@@ -498,7 +512,7 @@
             "metadata": {
                 "name": "demo-eap-extensions",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 }
             },
             "spec": {
@@ -633,7 +647,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-eap",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 }
             },
             "spec": {
@@ -864,11 +878,11 @@
                                     },
                                     {
                                         "name": "HORNETQ_CLUSTER_PASSWORD",
-                                        "value": "${HORNETQ_CLUSTER_PASSWORD}"
+                                        "value": "${JDV_HORNETQ_CLUSTER_PASSWORD}"
                                     },
                                     {
                                         "name": "JGROUPS_CLUSTER_PASSWORD",
-                                        "value": "${JGROUPS_CLUSTER_PASSWORD}"
+                                        "value": "${JDV_JGROUPS_CLUSTER_PASSWORD}"
                                     },
                                     {
                                         "name": "IMPORT_SQL",
@@ -935,7 +949,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-eap",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "application": "${APPLICATION_NAME}eap"
                 }
             },
             "spec": {
@@ -969,7 +983,7 @@
                         "name": "${APPLICATION_NAME}-eap",
                         "labels": {
                             "deploymentConfig": "${APPLICATION_NAME}-eap",
-                            "application": "${APPLICATION_NAME}"
+                            "application": "${APPLICATION_NAME}eap"
                         }
                     },
                     "spec": {
@@ -1024,7 +1038,7 @@
                                 "env": [
                                     {
                                         "name": "OPENSHIFT_KUBE_PING_LABELS",
-                                        "value": "application=${APPLICATION_NAME}"
+                                        "value": "application=${APPLICATION_NAME}eap"
                                     },
                                     {
                                         "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
@@ -1036,11 +1050,11 @@
                                     },
                                     {
                                         "name": "HORNETQ_CLUSTER_PASSWORD",
-                                        "value": "${HORNETQ_CLUSTER_PASSWORD}"
+                                        "value": "${EAP_HORNETQ_CLUSTER_PASSWORD}"
                                     },
                                     {
                                         "name": "JGROUPS_CLUSTER_PASSWORD",
-                                        "value": "${JGROUPS_CLUSTER_PASSWORD}"
+                                        "value": "${EAP_JGROUPS_CLUSTER_PASSWORD}"
                                     },
                                     {
                                         "name": "AUTO_DEPLOY_EXPLODED",
