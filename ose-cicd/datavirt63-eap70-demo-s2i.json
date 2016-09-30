@@ -1,0 +1,1187 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "annotations": {
+            "iconClass": "icon-jboss",
+            "description": "Application template for JDV all-in-one example/demo",
+            "tags": "eap,javaee,java,jboss,xpaas",
+            "version": "1.0.0"
+        },
+        "name": "datavirt63-eap70-demo-s2i"
+    },
+    "labels": {
+        "template": "datavirt63-eap70-demo-s2i",
+        "xpaas": "1.0.0"
+    },
+    "parameters": [
+        {
+            "description": "The name for the application.",
+            "name": "APPLICATION_NAME",
+            "value": "datavirt",
+            "required": true
+        },
+        {
+            "description": "Custom hostname for http service route.  Leave blank for default hostname, e.g.: <application-name>-<project>.<default-domain-suffix>",
+            "name": "HOSTNAME_HTTP",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "Custom hostname for https service route.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
+            "name": "HOSTNAME_HTTPS",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "List of directories from which VDBS will be copied into the deployment folder.  If unspecified, all archives in source will be copied.",
+            "name": "VDB_DIR",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "Database JNDI name used by application to resolve the datasource, e.g. java:/jboss/datasources/postgresql",
+            "name": "DB_JNDI",
+            "value": "java:/account-ds",
+            "required": false
+        },
+        {
+            "description": "Database name",
+            "name": "DB_DATABASE",
+            "value": "root",
+            "required": true
+        },
+        {
+            "description": "Sets xa-pool/min-pool-size for the configured datasource.",
+            "name": "DB_MIN_POOL_SIZE",
+            "required": false
+        },
+        {
+            "description": "Sets xa-pool/max-pool-size for the configured datasource.",
+            "name": "DB_MAX_POOL_SIZE",
+            "required": false
+        },
+        {
+            "description": "Sets transaction-isolation for the configured datasource.",
+            "name": "DB_TX_ISOLATION",
+            "required": false
+        },
+        {
+            "description": "The maximum number of client connections allowed. This also sets the maximum number of prepared transactions.",
+            "name": "POSTGRESQL_MAX_CONNECTIONS",
+            "required": false
+        },
+        {
+            "description": "Configures how much memory is dedicated to PostgreSQL for caching data.",
+            "name": "POSTGRESQL_SHARED_BUFFERS",
+            "required": false
+        },
+        {
+            "description": "Database user name",
+            "name": "DB_USERNAME",
+            "from": "user[a-zA-Z0-9]{3}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Database user password",
+            "name": "DB_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "HornetQ cluster admin password",
+            "name": "JDV_HORNETQ_CLUSTER_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "HornetQ cluster admin password",
+            "name": "EAP_HORNETQ_CLUSTER_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "GitHub trigger secret",
+            "name": "GITHUB_WEBHOOK_SECRET",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Generic build trigger secret",
+            "name": "GENERIC_WEBHOOK_SECRET",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Namespace in which the ImageStreams for Red Hat Middleware images are installed. These ImageStreams are normally installed in the openshift namespace. You should only need to modify this if you've installed the ImageStreams in a different namespace/project.",
+            "name": "IMAGE_STREAM_NAMESPACE",
+            "value": "openshift",
+            "required": true
+        },
+        {
+            "description": "JGroups cluster password",
+            "name": "JDV_JGROUPS_CLUSTER_PASSWORD", 
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "JGroups cluster password",
+            "name": "EAP_JGROUPS_CLUSTER_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Password for JDV admin user",
+            "name": "ADMINUSER_PASSWORD",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "Password for JDV teiidUser user",
+            "name": "TEIIDUSER_PASSWORD",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "Password for JDV modeshapeUser user",
+            "name": "MODESHAPEUSER_PASSWORD",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "Keystore file for jdbc secure transport",
+            "name": "DATAVIRT_TRANSPORT_KEYSTORE",
+            "value": "keystore.jks",
+            "required": false
+        },
+        {
+            "description": "Alias for jdbc secure transport keystore",
+            "name": "DATAVIRT_TRANSPORT_KEYSTORE_ALIAS",
+            "value": "jboss",
+            "required": false
+        },
+        {
+            "description": "Password for jdbc secure transport keystore",
+            "name": "DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD",
+            "value": "mykeystorepass",
+            "required": false
+        },
+        {
+            "description": "Comma delimited list of usernames to add",
+            "name": "DATAVIRT_USERS",
+            "value": "restUser",
+            "required": false
+        },
+        {
+            "description": "Comma delimited list of passwords corresponding to DATAVIRT_USERS",
+            "name": "DATAVIRT_USER_PASSWORDS",
+            "value": "P@ssword1",
+            "required": false
+        },
+        {
+            "description": "Comma delimited list of groups/roles corresponding to DATAVIRT_USERS",
+            "name": "DATAVIRT_USER_GROUPS",
+            "value": "rest",
+            "required": false
+        }
+
+    ],
+    "objects": [
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "annotations": {
+                    "description": "Default secret file with name 'jboss' and password 'mykeystorepass'"
+                },
+                "name": "datavirt-demo-secret"
+            },
+            "data": {
+                "keystore.jks": "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",
+                "jgroups.jceks": "zs7OzgAAAAIAAAABAAAAAwAKc2VjcmV0LWtleQAAAVDQhuHmrO0ABXNyADNjb20uc3VuLmNyeXB0by5wcm92aWRlci5TZWFsZWRPYmplY3RGb3JLZXlQcm90ZWN0b3LNV8pZ5zC7UwIAAHhyABlqYXZheC5jcnlwdG8uU2VhbGVkT2JqZWN0PjY9psO3VHACAARbAA1lbmNvZGVkUGFyYW1zdAACW0JbABBlbmNyeXB0ZWRDb250ZW50cQB+AAJMAAlwYXJhbXNBbGd0ABJMamF2YS9sYW5nL1N0cmluZztMAAdzZWFsQWxncQB+AAN4cHVyAAJbQqzzF/gGCFTgAgAAeHAAAAAPMA0ECHcwLGK6EDyLAgEUdXEAfgAFAAAAmCu9wRKf1aYYUOEWe406ncPtIdm3147G7MJyWUu2kJVY15a2QxeZi9w5J3AF6T64CvylUuQjpcC4DWXwVn9BefntkBR8CzTiH7VxEqVOQ/OkFS29Inoq8t7/NBaTgTdmMkb4ETV1gIsy/+W6kk7QTqxItCkdKKGFE90Be/7yL3tG16TCy/ABKl7CO6PHa44CqK2PUE1oaJ+WdAAWUEJFV2l0aE1ENUFuZFRyaXBsZURFU3QAFlBCRVdpdGhNRDVBbmRUcmlwbGVERVMN658veJP01V2j9y8bQCYIzViutw=="
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}"
+                }
+            },
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The web server's http port."
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "port": 31000,
+                        "targetPort": 31000
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}"
+                }
+            },
+            "metadata": {
+                "name": "jdbc-${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The Teiid jdbc port."
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "port": 31443,
+                        "targetPort": 31443
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}"
+                }
+            },
+            "metadata": {
+                "name": "securejdbc-${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The Teiid jdbc over ssl port."
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "port": 5432,
+                        "targetPort": 5432
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}-postgresql"
+                }
+            },
+            "metadata": {
+                "name": "${APPLICATION_NAME}-postgresql",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The database server's port."
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}-eap"
+                }
+            },
+            "metadata": {
+                "name": "${APPLICATION_NAME}-eap",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                },
+                "annotations": {
+                    "description": "The web server's http port."
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "id": "${APPLICATION_NAME}-http",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Route for application's http service."
+                }
+            },
+            "spec": {
+                "host": "${HOSTNAME_HTTP}",
+                "to": {
+                    "name": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "id": "${APPLICATION_NAME}-jdbc",
+            "metadata": {
+                "name": "jdbc-${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Route for application's jdbc service."
+                }
+            },
+            "spec": {
+                "host": "${HOSTNAME_HTTPS}",
+                "to": {
+                    "name": "jdbc-${APPLICATION_NAME}"
+                },
+                "tls": {
+                    "termination": "passthrough"
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "id": "${APPLICATION_NAME}-eap",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-eap",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                },
+                "annotations": {
+                    "description": "Route for application's http service."
+                }
+            },
+            "spec": {
+                "host": "datavirt-eap-demo.cloudapps.example.com",
+                "to": {
+                    "name": "${APPLICATION_NAME}-eap"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-eap",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "demo-jdv-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "supports":"demo-jdv-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": { 
+                "name": "demo-eap-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "1.0",
+                        "annotations": {
+                            "supports":"demo-eap-extensions:1.0",
+                            "version": "1.0"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "demo-jdv-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "http://github.com/bdecoste/jdv-demo",
+                        "ref": ""
+                    },
+                    "contextDir": "ose-dba/vdb"
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerfilePath": "Dockerfile"
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "namespace": "demo",
+                        "name": "demo-jdv-extensions:1.0"
+                    }
+                },
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "demo-eap-extensions",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "http://github.com/bdecoste/jdv-demo",
+                        "ref": ""
+                    },
+                    "contextDir": "ose-dba/app"
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerfilePath": "Dockerfile"
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "namespace": "demo",
+                        "name": "demo-eap-extensions:1.0"
+                    }
+                },
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "http://github.com/bdecoste/jdv-demo-vdb",
+                        "ref": ""
+                    },
+                    "contextDir": "",
+                    "images": [
+                        {
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "demo",
+                                "name": "demo-jdv-extensions:1.0"
+                            },
+                            "paths": [
+                                {
+                                    "destinationDir": ".",
+                                    "sourcePath": "/injected"
+                                }
+                             ]
+                        }
+                    ]
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "forcePull": true,
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "${IMAGE_STREAM_NAMESPACE}",
+                            "name": "jboss-datavirt63-openshift:1.0"
+                        },
+                        "env": [
+                            {
+                                "name": "ARTIFACT_DIR",
+                                "value": "hibernate-on-top-of-teiid/target,webservices-as-a-datasource/target"
+                            },
+                            {
+                                "name": "CUSTOM_INSTALL_DIRECTORIES",
+                                "value": "injected"
+                            }
+                        ]
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}:latest"
+                    }
+                },
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-eap",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "http://github.com/bdecoste/jdv-demo-app",
+                        "ref": ""
+                    },
+                    "contextDir": "",
+                    "images": [
+                        {
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "demo",
+                                "name": "demo-eap-extensions:1.0"
+                            },
+                            "paths": [
+                                {
+                                    "destinationDir": ".",
+                                    "sourcePath": "/injected"
+                                }
+                             ]
+                        }
+                    ]
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "forcePull": true,
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "${IMAGE_STREAM_NAMESPACE}",
+                            "name": "jboss-eap70-openshift:1.4"
+                        },
+                        "env": [
+                            {
+                                "name": "CUSTOM_INSTALL_DIRECTORIES",
+                                "value": "injected"
+                            }
+                        ]
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}-eap:latest"
+                    }
+                },
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}"
+                            ],
+                            "from": {
+                                "kind": "ImageStream",
+                                "name": "${APPLICATION_NAME}"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "${APPLICATION_NAME}",
+                        "labels": {
+                            "deploymentConfig": "${APPLICATION_NAME}",
+                            "application": "${APPLICATION_NAME}"
+                        }
+                    },
+                    "spec": {
+                        "terminationGracePeriodSeconds": 60,
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}",
+                                "image": "${APPLICATION_NAME}",
+                                "imagePullPolicy": "Always",
+                                "volumeMounts": [
+                                    {
+                                        "name": "jdv-keystore-volume",
+                                        "mountPath": "/etc/jdv-secret-volume",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "name": "jdv-demo-vdb-volume",
+                                        "mountPath": "/etc/jdv-extensions",
+                                        "readOnly": true
+                                    }
+                                ],
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "/opt/eap/bin/livenessProbe.sh"
+                                        ]
+                                    }
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "/opt/eap/bin/readinessProbe.sh"
+                                        ]
+                                    }
+                                },
+                                "ports": [
+                                    {
+                                        "name": "jolokia",
+                                        "containerPort": 8778,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "http",
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "ping",
+                                        "containerPort": 8888,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "jdbc",
+                                        "containerPort": 31000,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "secure-jdbc",
+                                        "containerPort": 31443,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "management",
+                                        "containerPort": 9999,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "DB_SERVICE_PREFIX_MAPPING",
+                                        "value": "${APPLICATION_NAME}-postgresql=POSTGRESQL"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_JNDI",
+                                        "value": "${DB_JNDI}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_USERNAME",
+                                        "value": "${DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_PASSWORD",
+                                        "value": "${DB_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_DATABASE",
+                                        "value": "${DB_DATABASE}"
+                                    },
+                                    {
+                                        "name": "TX_DATABASE_PREFIX_MAPPING",
+                                        "value": "${APPLICATION_NAME}-postgresql=POSTGRESQL"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_MIN_POOL_SIZE",
+                                        "value": "${DB_MIN_POOL_SIZE}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_MAX_POOL_SIZE",
+                                        "value": "${DB_MAX_POOL_SIZE}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_TX_ISOLATION",
+                                        "value": "${DB_TX_ISOLATION}"
+                                    },
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_LABELS",
+                                        "value": "application=${APPLICATION_NAME}"
+                                    },
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.namespace"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "HORNETQ_CLUSTER_PASSWORD",
+                                        "value": "${JDV_HORNETQ_CLUSTER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_CLUSTER_PASSWORD",
+                                        "value": "${JDV_JGROUPS_CLUSTER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "IMPORT_SQL",
+                                        "value": "injected/injected-files/import-postgresql.sh"
+                                    },
+                                    {
+                                        "name": "ADMINUSER_PASSWORD",
+                                        "value": "${ADMINUSER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "TEIIDUSER_PASSWORD",
+                                        "value": "${TEIIDUSER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "DASHBOARDADMIN_PASSWORD",
+                                        "value": "${DASHBOARDADMIN_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "MODESHAPEUSER_PASSWORD",
+                                        "value": "${MODESHAPEUSER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE",
+                                        "value": "/etc/jdv-secret-volume/${DATAVIRT_TRANSPORT_KEYSTORE}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE_ALIAS",
+                                        "value": "${DATAVIRT_TRANSPORT_KEYSTORE_ALIAS}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD",
+                                        "value": "${DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_USERS",
+                                        "value": "${DATAVIRT_USERS}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_USER_PASSWORDS",
+                                        "value": "${DATAVIRT_USER_PASSWORDS}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_USER_GROUPS",
+                                        "value": "${DATAVIRT_USER_GROUPS}"
+                                    },
+                                    {
+                                        "name": "EXTENSIONS_PROPERTIES_FILES",
+                                        "value": "/etc/jdv-extensions/resourceadapters.properties"
+                                    }
+                                ]
+                            }
+                        ],
+                        "volumes": [
+                            {
+                                "name": "jdv-keystore-volume",
+                                "secret": {
+                                    "secretName": "datavirt-demo-secret"
+                                }
+                            },
+                            {
+                                "name": "jdv-demo-vdb-volume",
+                                "secret": {
+                                    "secretName": "resourceadapters-demo-secret"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-eap",
+                "labels": {
+                    "application": "${APPLICATION_NAME}eap"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-eap"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APPLICATION_NAME}-eap:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}-eap"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "${APPLICATION_NAME}-eap",
+                        "labels": {
+                            "deploymentConfig": "${APPLICATION_NAME}-eap",
+                            "application": "${APPLICATION_NAME}eap"
+                        }
+                    },
+                    "spec": {
+                        "terminationGracePeriodSeconds": 60,
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-eap",
+                                "image": "${APPLICATION_NAME}-eap",
+                                "imagePullPolicy": "Always",
+                                "volumeMounts": [
+                                    {
+                                        "name": "jdv-demo-app-volume",
+                                        "mountPath": "/etc/eap-extensions",
+                                        "readOnly": true
+                                    }
+                                ],
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "/opt/eap/bin/livenessProbe.sh"
+                                        ]
+                                    }
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "/opt/eap/bin/readinessProbe.sh"
+                                        ]
+                                    }
+                                },
+                                "ports": [
+                                    {
+                                        "name": "jolokia",
+                                        "containerPort": 8778,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "http",
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "ping",
+                                        "containerPort": 8888,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_LABELS",
+                                        "value": "application=${APPLICATION_NAME}eap"
+                                    },
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.namespace"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "HORNETQ_CLUSTER_PASSWORD",
+                                        "value": "${EAP_HORNETQ_CLUSTER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_CLUSTER_PASSWORD",
+                                        "value": "${EAP_JGROUPS_CLUSTER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "AUTO_DEPLOY_EXPLODED",
+                                        "value": "false"
+                                    },
+                                    {
+                                        "name": "EXTENSIONS_PROPERTIES_FILES",
+                                        "value": "/etc/eap-extensions/datasources.properties"
+                                    }
+                                ]
+                            }
+                        ],
+                        "volumes": [
+                             {
+                                "name": "jdv-demo-app-volume",
+                                "secret": {
+                                    "secretName": "datasources-demo-secret"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-postgresql",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-postgresql"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "${IMAGE_STREAM_NAMESPACE}",
+                                "name": "postgresql:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "deploymentConfig": "${APPLICATION_NAME}-postgresql"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "${APPLICATION_NAME}-postgresql",
+                        "labels": {
+                            "deploymentConfig": "${APPLICATION_NAME}-postgresql",
+                            "application": "${APPLICATION_NAME}"
+                        }
+                    },
+                    "spec": {
+                        "terminationGracePeriodSeconds": 60,
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-postgresql",
+                                "image": "postgresql",
+                                "imagePullPolicy": "Always",
+                                "ports": [
+                                    {
+                                        "containerPort": 5432,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "POSTGRESQL_USER",
+                                        "value": "${DB_USERNAME}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_PASSWORD",
+                                        "value": "${DB_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_DATABASE",
+                                        "value": "${DB_DATABASE}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_MAX_CONNECTIONS",
+                                        "value": "${POSTGRESQL_MAX_CONNECTIONS}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_MAX_PREPARED_TRANSACTIONS",
+                                        "value": "${POSTGRESQL_MAX_CONNECTIONS}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_SHARED_BUFFERS",
+                                        "value": "${POSTGRESQL_SHARED_BUFFERS}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
