@@ -139,22 +139,30 @@
             "required": true
         },
         {
-            "description": "Password for JDV admin user",
-            "name": "ADMINUSER_PASSWORD",
-            "value": "",
+            "description": "Username for Teiid user",
+            "name": "TEIID_USERNAME",
+            "value": "teiidUser",
             "required": false
         },
         {
-            "description": "Password for JDV teiidUser user",
-            "name": "TEIIDUSER_PASSWORD",
-            "value": "",
+            "description": "Password for JDV TEIID_USERNAME",
+            "name": "TEIID_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Username for ModeShape user",
+            "name": "MODESHAPE_USERNAME",
+            "value": "modeshapeUser",
             "required": false
         },
         {
-            "description": "Password for JDV modeshapeUser user",
-            "name": "MODESHAPEUSER_PASSWORD",
-            "value": "",
-            "required": false
+            "description": "Password for JDV MODESHAPE_USERNAME",
+            "name": "MODESHAPE_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
         },
         {
             "description": "Keystore file for jdbc secure transport",
