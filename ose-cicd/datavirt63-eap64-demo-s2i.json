@@ -906,16 +906,20 @@
                                         "value": "${ADMINUSER_PASSWORD}"
                                     },
                                     {
-                                        "name": "TEIIDUSER_PASSWORD",
-                                        "value": "${TEIIDUSER_PASSWORD}"
+                                        "name": "TEIID_USERNAME",
+                                        "value": "${TEIID_USERNAME}"
                                     },
                                     {
-                                        "name": "DASHBOARDADMIN_PASSWORD",
-                                        "value": "${DASHBOARDADMIN_PASSWORD}"
+                                        "name": "TEIID_PASSWORD",
+                                        "value": "${TEIID_PASSWORD}"
                                     },
                                     {
-                                        "name": "MODESHAPEUSER_PASSWORD",
-                                        "value": "${MODESHAPEUSER_PASSWORD}"
+                                        "name": "MODESHAPE_USERNAME",
+                                        "value": "${MODESHAPE_USERNAME}"
+                                    },
+                                    {
+                                        "name": "MODESHAPE_PASSWORD",
+                                        "value": "${MODESHAPE_PASSWORD}"
                                     },
                                     {
                                         "name": "DATAVIRT_TRANSPORT_KEYSTORE",
