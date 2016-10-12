@@ -147,8 +147,7 @@
         {
             "description": "Password for JDV TEIID_USERNAME",
             "name": "TEIID_PASSWORD",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
+            "value": "P@ssword1",
             "required": true
         },
         {
@@ -160,8 +159,7 @@
         {
             "description": "Password for JDV MODESHAPE_USERNAME",
             "name": "MODESHAPE_PASSWORD",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
+            "value": "P@ssword1",
             "required": true
         },
         {
