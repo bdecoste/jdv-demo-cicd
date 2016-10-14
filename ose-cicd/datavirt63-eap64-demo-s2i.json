@@ -208,6 +208,34 @@
                 "annotations": {
                     "description": "Default secret file with name 'jboss' and password 'mykeystorepass'"
                 },
+                "name": "datasources-demo-secret"
+            },
+            "data": {
+                  "datasources.properties": "I0RBVEFTT1VSQ0VTCkVYVEVOU0lPTl9EQVRBU09VUkNFUz1URUlJRAoKVEVJSURfSk5EST1qYXZh\nOi9qYm9zcy9kYXRhc291cmNlcy9IaWJlcm5hdGU0VGVpaWRRdWlja3N0YXJ0RFMKVEVJSURfRFJJ\nVkVSPXRlaWlkClRFSUlEX1VTRVJOQU1FPXRlaWlkVXNlcgpURUlJRF9QQVNTV09SRD1QQHNzd29y\nZDEKVEVJSURfVVJMPWpkYmM6dGVpaWQ6SGliZXJuYXRlX1BvcnRmb2xpb0BtbTovL2pkYmMtZGF0\nYXZpcnQuZGVtby5zdmMuY2x1c3Rlci5sb2NhbDozMTAwMDtzaG93cGxhbj1vbgpURUlJRF9EQVRB\nQkFTRT1IaWJlcm5hdGVfUG9ydGZvbGlvClRFSUlEX1NFUlZJQ0VfSE9TVD1qZGJjLWRhdGF2aXJ0\nLmRlbW8uc3ZjLmNsdXN0ZXIubG9jYWwKVEVJSURfU0VSVklDRV9QT1JUPTMxMDAwClRFSUlEX05P\nTlhBPXRydWUKVEVJSURfSlRBPWZhbHNlCgo="
+                
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "annotations": {
+                    "description": "Default secret file with name 'jboss' and password 'mykeystorepass'"
+                },
+                "name": "resourceadapters-demo-secret"
+            },
+            "data": {
+                  "resourceadapters.properties": "I1JFU09VUkNFIEFEQVBURVJTCkVYVEVOU0lPTl9SRVNPVVJDRV9BREFQVEVSUz1RU0VYQ0VMLFFT\nRklMRSxRU1dTCgpRU0VYQ0VMX0lEPWZpbGVRU0V4Y2VsClFTRVhDRUxfTU9EVUxFX1NMT1Q9bWFp\nbgpRU0VYQ0VMX01PRFVMRV9JRD1vcmcuamJvc3MudGVpaWQucmVzb3VyY2UtYWRhcHRlci5maWxl\nClFTRVhDRUxfQ09OTkVDVElPTl9DTEFTUz1vcmcudGVpaWQucmVzb3VyY2UuYWRhcHRlci5maWxl\nLkZpbGVNYW5hZ2VkQ29ubmVjdGlvbkZhY3RvcnkKUVNFWENFTF9DT05ORUNUSU9OX0pOREk9amF2\nYTovZXhjZWwtZmlsZQpRU0VYQ0VMX1BST1BFUlRZX1BhcmVudERpcmVjdG9yeT0vaG9tZS9qYm9z\ncy9zb3VyY2UvaW5qZWN0ZWQvaW5qZWN0ZWQtZmlsZXMvZXhjZWwtZmlsZXMvClFTRVhDRUxfUFJP\nUEVSVFlfQWxsb3dQYXJlbnRQYXRocz10cnVlCgpRU0ZJTEVfSUQ9ZmlsZVFTClFTRklMRV9NT0RV\nTEVfU0xPVD1tYWluClFTRklMRV9NT0RVTEVfSUQ9b3JnLmpib3NzLnRlaWlkLnJlc291cmNlLWFk\nYXB0ZXIuZmlsZQpRU0ZJTEVfQ09OTkVDVElPTl9DTEFTUz1vcmcudGVpaWQucmVzb3VyY2UuYWRh\ncHRlci5maWxlLkZpbGVNYW5hZ2VkQ29ubmVjdGlvbkZhY3RvcnkKUVNGSUxFX0NPTk5FQ1RJT05f\nSk5EST1qYXZhOi9tYXJrZXRkYXRhLWZpbGUKUVNGSUxFX1BST1BFUlRZX1BhcmVudERpcmVjdG9y\neT0vaG9tZS9qYm9zcy9zb3VyY2UvaW5qZWN0ZWQvaW5qZWN0ZWQtZmlsZXMvZGF0YQpRU0ZJTEVf\nUFJPUEVSVFlfQWxsb3dQYXJlbnRQYXRocz10cnVlCgpRU1dTX0lEPXdzUVMKUVNXU19NT0RVTEVf\nU0xPVD1tYWluClFTV1NfTU9EVUxFX0lEPW9yZy5qYm9zcy50ZWlpZC5yZXNvdXJjZS1hZGFwdGVy\nLndlYnNlcnZpY2UKUVNXU19DT05ORUNUSU9OX0NMQVNTPW9yZy50ZWlpZC5yZXNvdXJjZS5hZGFw\ndGVyLndzLldTTWFuYWdlZENvbm5lY3Rpb25GYWN0b3J5ClFTV1NfQ09OTkVDVElPTl9KTkRJPWph\ndmE6L0N1c3RvbWVyUkVTVFdlYlN2Y1NvdXJjZQpRU1dTX1BST1BFUlRZX0VuZFBvaW50PWh0dHA6\nLy9sb2NhbGhvc3Q6ODA4MC9DdXN0b21lclJFU1RXZWJTdmMvTXlSRVNUQXBwbGljYXRpb24vY3Vz\ndG9tZXJMaXN0Cgo="
+                
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "annotations": {
+                    "description": "Default secret file with name 'jboss' and password 'mykeystorepass'"
+                },
                 "name": "datavirt-demo-secret"
             },
             "data": {

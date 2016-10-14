@@ -19,13 +19,6 @@ Create "demo" project
 $ oc new-project demo
 ```
 
-Create Secret containing datasource (for EAP) and resource adapter (for JDV) configurations
-
-```
-$ oc secrets new resourceadapters-demo-secret ./ose-dba/vdb/resourceadapters.properties
-$ oc secrets new datasources-demo-secret ./ose-dba/app/datasources.properties
-```
-
 Deploy example/demo
 
 ```
