@@ -35,7 +35,7 @@
         },
         {
             "description": "List of directories from which VDBS will be copied into the deployment folder.  If unspecified, all archives in source will be copied.",
-            "name": "VDB_DIR",
+            "name": "VDB_DIRS",
             "value": "dynamicvdb-datafederation/src/vdb,dynamicvdb-restservice/src/vdb,hibernate-on-top-of-teiid/src/main/vdb,webservices-as-a-datasource/src/vdb",
             "required": false
         },
@@ -614,6 +614,10 @@
                             {
                                 "name": "CUSTOM_INSTALL_DIRECTORIES",
                                 "value": "injected"
+                            },
+                            {
+                                "name": "VDB_DIRS",
+                                "value": "${VDB_DIRS}"
                             }
                         ]
                     }
