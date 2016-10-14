@@ -36,7 +36,7 @@
         {
             "description": "List of directories from which VDBS will be copied into the deployment folder.  If unspecified, all archives in source will be copied.",
             "name": "VDB_DIR",
-            "value": "",
+            "value": "dynamicvdb-datafederation/src/vdb,dynamicvdb-restservice/src/vdb,hibernate-on-top-of-teiid/src/main/vdb,webservices-as-a-datasource/src/vdb",
             "required": false
         },
         {
@@ -170,7 +170,7 @@
         },
         {
             "description": "Alias for jdbc secure transport keystore",
-            "name": "DATAVIRT_TRANSPORT_KEYSTORE_ALIAS",
+            "name": "DATAVIRT_TRANSPORT_KEY_ALIAS",
             "value": "jboss",
             "required": false
         },
@@ -920,12 +920,16 @@
                                         "value": "${MODESHAPE_PASSWORD}"
                                     },
                                     {
-                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE",
-                                        "value": "/etc/jdv-secret-volume/${DATAVIRT_TRANSPORT_KEYSTORE}"
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE_DIR",
+                                        "value": "/etc/jdv-secret-volume"
                                     },
                                     {
-                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE_ALIAS",
-                                        "value": "${DATAVIRT_TRANSPORT_KEYSTORE_ALIAS}"
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE",
+                                        "value": "${DATAVIRT_TRANSPORT_KEYSTORE}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEY_ALIAS",
+                                        "value": "${DATAVIRT_TRANSPORT_KEY_ALIAS}"
                                     },
                                     {
                                         "name": "DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD",
