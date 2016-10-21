@@ -201,6 +201,34 @@
 
     ],
     "objects": [
+         {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "annotations": {
+                    "description": "Default secret file with name 'jboss' and password 'mykeystorepass'"
+                },
+                "name": "app-configure-demo-secret"
+            },
+            "data": {
+                  "preconfigure.sh": "IyEvYmluL2Jhc2gKCnNldCAteAoKZWNobyAiISEhISEhISEhISEhISEhISEgcHJlL3Bvc3QgcnVu\ndGltZSBjb25maWd1cmUiCmNhdCAvb3B0L2VhcC9zdGFuZGFsb25lL2NvbmZpZ3VyYXRpb24vc3Rh\nbmRhbG9uZS1vcGVuc2hpZnQueG1sCg==",
+                  "postconfigure.sh": "IyEvYmluL2Jhc2gKCnNldCAteAoKZWNobyAiISEhISEhISEhISEhISEhISEgcHJlL3Bvc3QgcnVu\ndGltZSBjb25maWd1cmUiCmNhdCAvb3B0L2VhcC9zdGFuZGFsb25lL2NvbmZpZ3VyYXRpb24vc3Rh\nbmRhbG9uZS1vcGVuc2hpZnQueG1sCg=="
+            }
+        },
+        {
+            "kind": "Secret",
+            "apiVersion": "v1",
+            "metadata": {
+                "annotations": {
+                    "description": "Default secret file with name 'jboss' and password 'mykeystorepass'"
+                },
+                "name": "vdb-configure-demo-secret"
+            },
+            "data": {
+                  "preconfigure.sh": "IyEvYmluL2Jhc2gKCnNldCAteAoKZWNobyAiISEhISEhISEhISEhISEhISEgcHJlL3Bvc3QgcnVu\ndGltZSBjb25maWd1cmUiCmNhdCAvb3B0L2VhcC9zdGFuZGFsb25lL2NvbmZpZ3VyYXRpb24vc3Rh\nbmRhbG9uZS1vcGVuc2hpZnQueG1sCg==",
+                  "postconfigure.sh": "IyEvYmluL2Jhc2gKCnNldCAteAoKZWNobyAiISEhISEhISEhISEhISEhISEgcHJlL3Bvc3QgcnVu\ndGltZSBjb25maWd1cmUiCmNhdCAvb3B0L2VhcC9zdGFuZGFsb25lL2NvbmZpZ3VyYXRpb24vc3Rh\nbmRhbG9uZS1vcGVuc2hpZnQueG1sCgpQR1BBU1NXT1JEPSRQT1NUR1JFU1FMX1BBU1NXT1JEIC91\nc3IvYmluL3BzcWwgLWggJERBVEFWSVJUX1BPU1RHUkVTUUxfU0VSVklDRV9IT1NUIC1kICRQT1NU\nR1JFU1FMX0RBVEFCQVNFIC1VICRQT1NUR1JFU1FMX1VTRVJOQU1FIC1mICR7SE9NRX0vc291cmNl\nL2luamVjdGVkL2luamVjdGVkLWZpbGVzL2N1c3RvbWVyLXNjaGVtYS1wZy5zcWwK"
+            }
+        },
         {
             "kind": "Secret",
             "apiVersion": "v1",
@@ -818,6 +846,11 @@
                                         "name": "jdv-demo-vdb-volume",
                                         "mountPath": "/etc/jdv-extensions",
                                         "readOnly": true
+                                    },
+                                    {
+                                        "name": "config-demo-vdb-volume",
+                                        "mountPath": "/usr/local/extensions",
+                                        "readOnly": false
                                     }
                                 ],
                                 "livenessProbe": {
@@ -928,10 +961,6 @@
                                         "value": "${JDV_JGROUPS_CLUSTER_PASSWORD}"
                                     },
                                     {
-                                        "name": "IMPORT_SQL",
-                                        "value": "injected/injected-files/import-postgresql.sh"
-                                    },
-                                    {
                                         "name": "ADMINUSER_PASSWORD",
                                         "value": "${ADMINUSER_PASSWORD}"
                                     },
@@ -998,6 +1027,12 @@
                                 "secret": {
                                     "secretName": "resourceadapters-demo-secret"
                                 }
+                            },
+                            {
+                                "name": "config-demo-vdb-volume",
+                                "secret": {
+                                    "secretName": "vdb-configure-demo-secret"
+                                }
                             }
                         ]
                     }
@@ -1059,6 +1094,11 @@
                                         "name": "jdv-demo-app-volume",
                                         "mountPath": "/etc/eap-extensions",
                                         "readOnly": true
+                                    },
+                                    {
+                                        "name": "config-demo-app-volume",
+                                        "mountPath": "/usr/local/extensions",
+                                        "readOnly": false
                                     }
                                 ],
                                 "livenessProbe": {
@@ -1129,10 +1169,16 @@
                             }
                         ],
                         "volumes": [
-                             {
+                           {
                                 "name": "jdv-demo-app-volume",
                                 "secret": {
                                     "secretName": "datasources-demo-secret"
+                                }
+                            },
+                            {
+                                "name": "config-demo-app-volume",
+                                "secret": {
+                                    "secretName": "app-configure-demo-secret"
                                 }
                             }
                         ]
