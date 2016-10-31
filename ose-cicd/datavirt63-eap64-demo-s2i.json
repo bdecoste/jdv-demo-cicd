@@ -414,9 +414,9 @@
         {
             "kind": "Route",
             "apiVersion": "v1",
-            "id": "${APPLICATION_NAME}-jdbc",
+            "id": "${APPLICATION_NAME}-securejdbc",
             "metadata": {
-                "name": "jdbc-${APPLICATION_NAME}",
+                "name": "securejdbc-${APPLICATION_NAME}",
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 },
@@ -425,9 +425,9 @@
                 }
             },
             "spec": {
-                "host": "${HOSTNAME_HTTPS}",
+                "host": "${HOSTNAME_HTTP}",
                 "to": {
-                    "name": "jdbc-${APPLICATION_NAME}"
+                    "name": "securejdbc-${APPLICATION_NAME}"
                 },
                 "tls": {
                     "termination": "passthrough"
@@ -1011,6 +1011,10 @@
                                     {
                                         "name": "EXTENSIONS_PROPERTIES_FILES",
                                         "value": "/etc/jdv-extensions/resourceadapters.properties"
+                                    },
+                                    {
+                                        "name": "JAVA_OPTS_APPEND",
+                                        "value": "-Dorg.teiid.ssl.trustAll=true"
                                     }
                                 ]
                             }
