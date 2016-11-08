@@ -239,7 +239,7 @@
                 "name": "datasources-demo-secret"
             },
             "data": {
-                  "datasources.properties": "I0RBVEFTT1VSQ0VTCkVYVEVOU0lPTl9EQVRBU09VUkNFUz1URUlJRAoKVEVJSURfSk5EST1qYXZh\nOi9qYm9zcy9kYXRhc291cmNlcy9IaWJlcm5hdGU0VGVpaWRRdWlja3N0YXJ0RFMKVEVJSURfRFJJ\nVkVSPXRlaWlkClRFSUlEX1VTRVJOQU1FPXRlaWlkVXNlcgpURUlJRF9QQVNTV09SRD1QQHNzd29y\nZDEKI1RFSUlEX1VSTD1qZGJjOnRlaWlkOkhpYmVybmF0ZV9Qb3J0Zm9saW9AbW06Ly9qZGJjLWRh\ndGF2aXJ0LmRlbW8uc3ZjLmNsdXN0ZXIubG9jYWw6MzEwMDA7c2hvd3BsYW49b24KVEVJSURfVVJM\nPWpkYmM6dGVpaWQ6SGliZXJuYXRlX1BvcnRmb2xpb0BtbXM6Ly9zZWN1cmVqZGJjLWRhdGF2aXJ0\nLWRlbW8uY2xvdWRhcHBzLmV4YW1wbGUuY29tOjQ0MztzaG93cGxhbj1vbgpURUlJRF9EQVRBQkFT\nRT1IaWJlcm5hdGVfUG9ydGZvbGlvClRFSUlEX1NFUlZJQ0VfSE9TVD1qZGJjLWRhdGF2aXJ0LmRl\nbW8uc3ZjLmNsdXN0ZXIubG9jYWwKVEVJSURfU0VSVklDRV9QT1JUPTMxMDAwClRFSUlEX05PTlhB\nPXRydWUKVEVJSURfSlRBPWZhbHNlCgo="
+                  "datasources.properties": "I0RBVEFTT1VSQ0VTCkRBVEFTT1VSQ0VTPVRFSUlECgpURUlJRF9KTkRJPWphdmE6L2pib3NzL2Rh\ndGFzb3VyY2VzL0hpYmVybmF0ZTRUZWlpZFF1aWNrc3RhcnREUwpURUlJRF9EUklWRVI9dGVpaWQK\nVEVJSURfVVNFUk5BTUU9dGVpaWRVc2VyClRFSUlEX1BBU1NXT1JEPVBAc3N3b3JkMQpURUlJRF9V\nUkw9amRiYzp0ZWlpZDpIaWJlcm5hdGVfUG9ydGZvbGlvQG1tOi8vamRiYy1kYXRhdmlydC5kZW1v\nLnN2Yy5jbHVzdGVyLmxvY2FsOjMxMDAwO3Nob3dwbGFuPW9uCiNURUlJRF9VUkw9amRiYzp0ZWlp\nZDpIaWJlcm5hdGVfUG9ydGZvbGlvQG1tczovL3NlY3VyZWpkYmMtZGF0YXZpcnQtZGVtby5jbG91\nZGFwcHMuZXhhbXBsZS5jb206NDQzO3Nob3dwbGFuPW9uClRFSUlEX0RBVEFCQVNFPUhpYmVybmF0\nZV9Qb3J0Zm9saW8KVEVJSURfU0VSVklDRV9IT1NUPWpkYmMtZGF0YXZpcnQuZGVtby5zdmMuY2x1\nc3Rlci5sb2NhbApURUlJRF9TRVJWSUNFX1BPUlQ9MzEwMDAKVEVJSURfTk9OWEE9dHJ1ZQpURUlJ\nRF9KVEE9ZmFsc2UKCg=="
             }
         },
         {
@@ -252,8 +252,7 @@
                 "name": "resourceadapters-demo-secret"
             },
             "data": {
-                  "resourceadapters.properties": "I1JFU09VUkNFIEFEQVBURVJTCkVYVEVOU0lPTl9SRVNPVVJDRV9BREFQVEVSUz1RU0VYQ0VMLFFT\nRklMRSxRU1dTCgpRU0VYQ0VMX0lEPWZpbGVRU0V4Y2VsClFTRVhDRUxfTU9EVUxFX1NMT1Q9bWFp\nbgpRU0VYQ0VMX01PRFVMRV9JRD1vcmcuamJvc3MudGVpaWQucmVzb3VyY2UtYWRhcHRlci5maWxl\nClFTRVhDRUxfQ09OTkVDVElPTl9DTEFTUz1vcmcudGVpaWQucmVzb3VyY2UuYWRhcHRlci5maWxl\nLkZpbGVNYW5hZ2VkQ29ubmVjdGlvbkZhY3RvcnkKUVNFWENFTF9DT05ORUNUSU9OX0pOREk9amF2\nYTovZXhjZWwtZmlsZQpRU0VYQ0VMX1BST1BFUlRZX1BhcmVudERpcmVjdG9yeT0vaG9tZS9qYm9z\ncy9zb3VyY2UvaW5qZWN0ZWQvaW5qZWN0ZWQtZmlsZXMvZXhjZWwtZmlsZXMvClFTRVhDRUxfUFJP\nUEVSVFlfQWxsb3dQYXJlbnRQYXRocz10cnVlCgpRU0ZJTEVfSUQ9ZmlsZVFTClFTRklMRV9NT0RV\nTEVfU0xPVD1tYWluClFTRklMRV9NT0RVTEVfSUQ9b3JnLmpib3NzLnRlaWlkLnJlc291cmNlLWFk\nYXB0ZXIuZmlsZQpRU0ZJTEVfQ09OTkVDVElPTl9DTEFTUz1vcmcudGVpaWQucmVzb3VyY2UuYWRh\ncHRlci5maWxlLkZpbGVNYW5hZ2VkQ29ubmVjdGlvbkZhY3RvcnkKUVNGSUxFX0NPTk5FQ1RJT05f\nSk5EST1qYXZhOi9tYXJrZXRkYXRhLWZpbGUKUVNGSUxFX1BST1BFUlRZX1BhcmVudERpcmVjdG9y\neT0vaG9tZS9qYm9zcy9zb3VyY2UvaW5qZWN0ZWQvaW5qZWN0ZWQtZmlsZXMvZGF0YQpRU0ZJTEVf\nUFJPUEVSVFlfQWxsb3dQYXJlbnRQYXRocz10cnVlCgpRU1dTX0lEPXdzUVMKUVNXU19NT0RVTEVf\nU0xPVD1tYWluClFTV1NfTU9EVUxFX0lEPW9yZy5qYm9zcy50ZWlpZC5yZXNvdXJjZS1hZGFwdGVy\nLndlYnNlcnZpY2UKUVNXU19DT05ORUNUSU9OX0NMQVNTPW9yZy50ZWlpZC5yZXNvdXJjZS5hZGFw\ndGVyLndzLldTTWFuYWdlZENvbm5lY3Rpb25GYWN0b3J5ClFTV1NfQ09OTkVDVElPTl9KTkRJPWph\ndmE6L0N1c3RvbWVyUkVTVFdlYlN2Y1NvdXJjZQpRU1dTX1BST1BFUlRZX0VuZFBvaW50PWh0dHA6\nLy9sb2NhbGhvc3Q6ODA4MC9DdXN0b21lclJFU1RXZWJTdmMvTXlSRVNUQXBwbGljYXRpb24vY3Vz\ndG9tZXJMaXN0Cgo="
-                
+                  "resourceadapters.properties": "I1JFU09VUkNFIEFEQVBURVJTClJFU09VUkNFX0FEQVBURVJTPVFTRVhDRUwsUVNGSUxFLFFTV1MK\nClFTRVhDRUxfSUQ9ZmlsZVFTRXhjZWwKUVNFWENFTF9NT0RVTEVfU0xPVD1tYWluClFTRVhDRUxf\nTU9EVUxFX0lEPW9yZy5qYm9zcy50ZWlpZC5yZXNvdXJjZS1hZGFwdGVyLmZpbGUKUVNFWENFTF9D\nT05ORUNUSU9OX0NMQVNTPW9yZy50ZWlpZC5yZXNvdXJjZS5hZGFwdGVyLmZpbGUuRmlsZU1hbmFn\nZWRDb25uZWN0aW9uRmFjdG9yeQpRU0VYQ0VMX0NPTk5FQ1RJT05fSk5EST1qYXZhOi9leGNlbC1m\naWxlClFTRVhDRUxfUFJPUEVSVFlfUGFyZW50RGlyZWN0b3J5PS9ob21lL2pib3NzL3NvdXJjZS9p\nbmplY3RlZC9pbmplY3RlZC1maWxlcy9leGNlbC1maWxlcy8KUVNFWENFTF9QUk9QRVJUWV9BbGxv\nd1BhcmVudFBhdGhzPXRydWUKClFTRklMRV9JRD1maWxlUVMKUVNGSUxFX01PRFVMRV9TTE9UPW1h\naW4KUVNGSUxFX01PRFVMRV9JRD1vcmcuamJvc3MudGVpaWQucmVzb3VyY2UtYWRhcHRlci5maWxl\nClFTRklMRV9DT05ORUNUSU9OX0NMQVNTPW9yZy50ZWlpZC5yZXNvdXJjZS5hZGFwdGVyLmZpbGUu\nRmlsZU1hbmFnZWRDb25uZWN0aW9uRmFjdG9yeQpRU0ZJTEVfQ09OTkVDVElPTl9KTkRJPWphdmE6\nL21hcmtldGRhdGEtZmlsZQpRU0ZJTEVfUFJPUEVSVFlfUGFyZW50RGlyZWN0b3J5PS9ob21lL2pi\nb3NzL3NvdXJjZS9pbmplY3RlZC9pbmplY3RlZC1maWxlcy9kYXRhClFTRklMRV9QUk9QRVJUWV9B\nbGxvd1BhcmVudFBhdGhzPXRydWUKClFTV1NfSUQ9d3NRUwpRU1dTX01PRFVMRV9TTE9UPW1haW4K\nUVNXU19NT0RVTEVfSUQ9b3JnLmpib3NzLnRlaWlkLnJlc291cmNlLWFkYXB0ZXIud2Vic2Vydmlj\nZQpRU1dTX0NPTk5FQ1RJT05fQ0xBU1M9b3JnLnRlaWlkLnJlc291cmNlLmFkYXB0ZXIud3MuV1NN\nYW5hZ2VkQ29ubmVjdGlvbkZhY3RvcnkKUVNXU19DT05ORUNUSU9OX0pOREk9amF2YTovQ3VzdG9t\nZXJSRVNUV2ViU3ZjU291cmNlClFTV1NfUFJPUEVSVFlfRW5kUG9pbnQ9aHR0cDovL2xvY2FsaG9z\ndDo4MDgwL0N1c3RvbWVyUkVTVFdlYlN2Yy9NeVJFU1RBcHBsaWNhdGlvbi9jdXN0b21lckxpc3QK\nCg=="
             }
         },
         {
@@ -848,7 +847,7 @@
                                     },
                                     {
                                         "name": "config-demo-vdb-volume",
-                                        "mountPath": "/usr/local/extensions",
+                                        "mountPath": "/opt/eap/extensions",
                                         "readOnly": false
                                     }
                                 ],
@@ -1008,7 +1007,7 @@
                                         "value": "${DATAVIRT_USER_GROUPS}"
                                     },
                                     {
-                                        "name": "EXTENSIONS_PROPERTIES_FILES",
+                                        "name": "ENV_FILES",
                                         "value": "/etc/jdv-extensions/resourceadapters.properties"
                                     },
                                     {
@@ -1100,7 +1099,7 @@
                                     },
                                     {
                                         "name": "config-demo-app-volume",
-                                        "mountPath": "/usr/local/extensions",
+                                        "mountPath": "/opt/eap/extensions",
                                         "readOnly": false
                                     }
                                 ],
@@ -1165,7 +1164,7 @@
                                         "value": "false"
                                     },
                                     {
-                                        "name": "EXTENSIONS_PROPERTIES_FILES",
+                                        "name": "ENV_FILES",
                                         "value": "/etc/eap-extensions/datasources.properties"
                                     }
                                 ]
