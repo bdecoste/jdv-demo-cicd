@@ -181,6 +181,12 @@
             "required": false
         },
         {
+            "description": "Authentication mode for secure transport (e.g. anonymous, 1-way)",
+            "name": "DATAVIRT_TRANSPORT_AUTHENTICATION_MODE",
+            "value": "1-way",
+            "required": false
+        },
+        {
             "description": "Comma delimited list of usernames to add",
             "name": "DATAVIRT_USERS",
             "value": "restUser",
@@ -993,6 +999,10 @@
                                     {
                                         "name": "DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD",
                                         "value": "${DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_AUTHENTICATION_MODE",
+                                        "value": "${DATAVIRT_TRANSPORT_AUTHENTICATION_MODE}"
                                     },
                                     {
                                         "name": "DATAVIRT_USERS",
